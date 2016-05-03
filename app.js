@@ -22,7 +22,6 @@ $(function() {
       bool = true;
       for (var i = 0; i < count-1; i++) {
         for (var j = i+1; j < count; j++) {
-          console.log(numbers[i], ',', numbers[j])
           if(numbers[i] === numbers[j]) {
             bool = false;
             break;
@@ -37,7 +36,7 @@ $(function() {
 
   function renderNumbers(numbers) {
     var count = numbers.length;
-    var result = `<ul style="width:${70*count};padding-top:120px;overflow-x:auto;">`;
+    var result = `<ul style="width:${70*count}px;padding-top:120px;overflow-x:auto;">`;
     numbers.forEach(function(item, index) {
       result+=`<li class="block nro-${item}">${item}</li>`;
     });
@@ -50,13 +49,13 @@ $(function() {
     var animations = [];
 
     for (var i = 0; i < data.length; i++) {
-      temp = data[i];
+      temp = Number(data[i]);
       band = -1;
       var children = [];
       var newObject = {};
 
       for (var j = i-1; j>=0; j--) {
-          if(temp < data[j]) {
+          if(temp < Number(data[j])) {
             band = j;
             children.push(`li.block.nro-${data[j]}`);
             data[j+1] = data[j];
