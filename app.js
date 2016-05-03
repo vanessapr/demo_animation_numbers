@@ -2,13 +2,38 @@ $(function() {
   $('#formInput').submit(function(event) {
     event.preventDefault();
     var txtNumbers = event.target.numbers.value;
-    var numbers = txtNumbers.split(',');
-    if(numbers) {
+
+    if(validate(txtNumbers)) {
+      var numbers = txtNumbers.split(',');
       var htmlNumber = renderNumbers(numbers);
       $('#result').empty().html(htmlNumber);
       generate_animation(numbers);
+    } else {
+      alert('Entrada no válida');
     }
   });
+
+  function validate(txtNumbers) {
+    var bool = false;
+    var patron = /^(\d+,)*\d+$/;
+    if(patron.test(txtNumbers)) {
+      var numbers = txtNumbers.split(',');
+      var count = numbers.length;
+      bool = true;
+      for (var i = 0; i < count-1; i++) {
+        for (var j = i+1; j < count; j++) {
+          console.log(numbers[i], ',', numbers[j])
+          if(numbers[i] === numbers[j]) {
+            bool = false;
+            break;
+          }
+        }
+      }
+
+    }
+
+    return bool;
+  }
 
   function renderNumbers(numbers) {
     var count = numbers.length;
