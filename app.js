@@ -20,6 +20,7 @@ $(function() {
       var numbers = txtNumbers.split(',');
       var count = numbers.length;
       bool = true;
+      //verifica numeros repetido
       for (var i = 0; i < count-1; i++) {
         for (var j = i+1; j < count; j++) {
           if(numbers[i] === numbers[j]) {
